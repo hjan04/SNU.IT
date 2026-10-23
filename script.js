@@ -1,4 +1,4 @@
-// Waitlist form + lightweight analytics for the v0.2 landing page.
+// Waitlist form, scroll animations and lightweight analytics for the landing page.
 
 // Set to a form backend URL (e.g. Google Apps Script web app, Formspree) before launch.
 // While empty, submissions are not sent anywhere and a preview notice is shown.
@@ -16,10 +16,10 @@ document.querySelectorAll("[data-track]").forEach((el) => {
 });
 
 const COURSES = {
-  IB: ["Math AA HL", "Math AA SL", "Math AI HL", "Math AI SL", "Physics HL", "Physics SL"],
-  IGCSE: ["Mathematics", "Additional Mathematics", "Physics"],
-  "A-Level": ["Mathematics", "Further Mathematics", "Physics"],
-  AP: ["Calculus AB", "Calculus BC", "Physics"],
+  IB: ["Math AA HL", "Math AA SL", "Physics HL", "Physics SL", "Chemistry HL", "Chemistry SL", "Biology HL", "Biology SL"],
+  IGCSE: ["Mathematics", "Additional Mathematics", "Physics", "Chemistry", "Biology"],
+  "A-Level": ["Mathematics", "Further Mathematics", "Physics", "Chemistry", "Biology"],
+  AP: ["Calculus AB", "Calculus BC", "Physics 1", "Physics C", "Chemistry"],
 };
 
 const form = document.getElementById("waitlist-form");
@@ -69,7 +69,15 @@ function validate() {
     else input.setAttribute("aria-invalid", "true");
     if (!ok) missing.push(input);
   });
-  ["curriculum", "subjects", "interests"].forEach((group) => {
+  // WhatsApp or Email: at least one, and Email must be well-formed if given.
+  const { whatsapp, email } = form.elements;
+  const contactOk = (whatsapp.value.trim() || email.value.trim()) && email.checkValidity();
+  [whatsapp, email].forEach((input) => {
+    if (contactOk) input.removeAttribute("aria-invalid");
+    else input.setAttribute("aria-invalid", "true");
+  });
+  if (!contactOk) missing.push(whatsapp);
+  ["curriculum", "subjects"].forEach((group) => {
     const row = form.querySelector(`[data-group="${group}"]`);
     const ok = form.querySelector(`input[name="${group}"]:checked`);
     row.classList.toggle("invalid", !ok);
@@ -97,7 +105,7 @@ form.addEventListener("submit", async (e) => {
   errorBox.hidden = true;
   const missing = validate();
   if (missing.length) {
-    errorBox.textContent = "필수 항목을 확인해주세요. (이메일 형식, Curriculum, 관심 과목, 관심 프로그램, 개인정보 동의)";
+    errorBox.textContent = "필수 항목을 확인해주세요. (학생 이름, WhatsApp 또는 Email, Curriculum, 관심 과목, 개인정보 동의)";
     errorBox.hidden = false;
     missing[0].focus();
     track("waitlist_invalid", { missing: missing.length });
@@ -136,3 +144,67 @@ form.addEventListener("submit", async (e) => {
     button.disabled = false;
   }
 });
+
+const shareButton = document.querySelector("[data-share]");
+shareButton.addEventListener("click", async () => {
+  const url = location.href.split("#")[0];
+  try {
+    if (navigator.share) await navigator.share({ title: document.title, url });
+    else {
+      await navigator.clipboard.writeText(url);
+      shareButton.textContent = "링크가 복사되었습니다 ✓";
+    }
+  } catch {
+    // User cancelled the share sheet or clipboard is blocked; nothing to do.
+  }
+});
+
+// Header gets a hairline once the page scrolls.
+const header = document.querySelector(".site-header");
+const onScroll = () => header.classList.toggle("scrolled", scrollY > 8);
+addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+// Scroll reveal: siblings fade in one after another. Counters tick up once.
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll("[data-reveal]").forEach((el) => {
+  const siblings = [...el.parentElement.children].filter((c) => c.hasAttribute("data-reveal"));
+  el.style.setProperty("--d", `${siblings.indexOf(el) * 90}ms`);
+});
+
+function countUp(el) {
+  const target = Number(el.dataset.count);
+  if (reduceMotion) return;
+  const start = performance.now();
+  const step = (now) => {
+    const t = Math.min((now - start) / 1200, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("is-visible");
+    entry.target.querySelectorAll("[data-count]").forEach(countUp);
+    observer.unobserve(entry.target);
+  });
+}, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+
+// Hero: cycle through example courses.
+const rotator = document.querySelector(".rotator");
+if (rotator && !reduceMotion) {
+  const words = rotator.dataset.words.split("|");
+  let i = 0;
+  setInterval(() => {
+    rotator.classList.add("out");
+    setTimeout(() => {
+      i = (i + 1) % words.length;
+      rotator.textContent = words[i];
+      rotator.classList.remove("out");
+    }, 350);
+  }, 2400);
+}

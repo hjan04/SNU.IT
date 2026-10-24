@@ -1,8 +1,8 @@
 // Waitlist form, scroll animations and lightweight analytics for the landing page.
 
-// Set to a form backend URL (e.g. Google Apps Script web app, Formspree) before launch.
+// Google Apps Script web app URL (see scripts/waitlist-apps-script.gs).
 // While empty, submissions are not sent anywhere and a preview notice is shown.
-const WAITLIST_ENDPOINT = "";
+const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbxB6X2W9btPlu14euEHn0rigpd47rrDWB5bY5CCLDKfe_XNCkaxhXYO3UD9ue2uNtzV/exec";
 
 // Analytics: events are pushed to window.dataLayer, so GA4 / GTM can be added later
 // without touching this file.
@@ -97,6 +97,7 @@ function collect() {
   }
   payload.submitted_at = new Date().toISOString();
   payload.page = location.href;
+  payload.ref = new URLSearchParams(location.search).get("ref") || "";
   return payload;
 }
 
@@ -123,7 +124,8 @@ form.addEventListener("submit", async (e) => {
         headers: { Accept: "application/json" },
         body: new URLSearchParams(payload),
       });
-      if (!res.ok && res.type !== "opaque") throw new Error(res.status);
+      const body = await res.json().catch(() => ({}));
+      if (body.ok === false || (!res.ok && res.type !== "opaque")) throw new Error(body.error || res.status);
     } else {
       success.querySelector(".preview-note").hidden = false;
       console.info("[preview] waitlist payload", payload);

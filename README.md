@@ -15,7 +15,9 @@ Landing Page SPEC v0.2 기준 정적 랜딩페이지입니다. (v0.1은 `archive
 
 - 필수: 학생 이름, WhatsApp 또는 Email(하나 이상), Curriculum, 관심 과목, 개인정보 동의. 나머지(학부모 · 학교 · 국가 · 학년 · 방학 일정 · 선호 시간대 · 관심 프로그램 · 유입 경로)는 선택입니다.
 - `script.js`의 `WAITLIST_ENDPOINT`가 비어 있으면 **실제로 전송되지 않고** 완료 화면에 검토용 안내가 표시됩니다.
-- 공개 전 Google Apps Script 웹앱(→ Google Sheets)이나 Formspree 등 수신 주소를 넣으세요. form-urlencoded POST로 전송합니다.
+- 수신: `scripts/waitlist-apps-script.gs`를 Google Sheets의 Apps Script에 붙여넣고 웹앱으로 배포한 뒤, `/exec` 주소를 `WAITLIST_ENDPOINT`에 넣습니다. 파일 상단에 단계가 적혀 있습니다.
+- 시트에는 `Waitlist`(신청 + 상태 · 담당 · 메모 열)와 `Summary`(커리큘럼 × 과목 신청 수, 5명 이상 초록색)가 생깁니다.
+- 링크에 `?ref=채널명`을 붙이면 유입 채널이 `ref` 열에 기록됩니다.
 
 ## 분석 (Analytics)
 

@@ -4,11 +4,29 @@
 // While empty, submissions are not sent anywhere and a preview notice is shown.
 const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbxB6X2W9btPlu14euEHn0rigpd47rrDWB5bY5CCLDKfe_XNCkaxhXYO3UD9ue2uNtzV/exec";
 
-// Analytics: events are pushed to window.dataLayer, so GA4 / GTM can be added later
-// without touching this file.
+// Fill these in when ready; empty values keep the feature off.
+const GA_MEASUREMENT_ID = ""; // GA4, e.g. "G-XXXXXXXXXX"
+const CONTACT_URL = ""; // KakaoTalk open chat or https://wa.me/<number>
+
 window.dataLayer = window.dataLayer || [];
+function gtag() { window.dataLayer.push(arguments); }
+if (GA_MEASUREMENT_ID) {
+  const tag = document.createElement("script");
+  tag.async = true;
+  tag.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.append(tag);
+  gtag("js", new Date());
+  gtag("config", GA_MEASUREMENT_ID);
+}
 function track(event, params = {}) {
-  window.dataLayer.push({ event, ...params });
+  gtag("event", event, params);
+}
+
+if (CONTACT_URL) {
+  document.querySelectorAll("[data-contact]").forEach((el) => {
+    el.href = CONTACT_URL;
+    el.hidden = false;
+  });
 }
 
 document.querySelectorAll("[data-track]").forEach((el) => {
@@ -46,8 +64,19 @@ function renderCourses(curriculum) {
   courseOther.hidden = curriculum !== "Other";
 }
 
+// Example answer for "needs", matched to the chosen curriculum.
+const NEEDS_EXAMPLES = {
+  IB: "예: Math AA HL 최근 시험 5점 (Predicted 6). 미적분 서술형에서 점수가 자주 깎여요.",
+  IGCSE: "예: Additional Maths 최근 모의고사 B. 시간이 부족해서 마지막 문제를 못 풀어요.",
+  "A-Level": "예: Physics AS 결과 B, 목표 A*. 전기 단원 개념이 헷갈려요.",
+  AP: "예: Calculus BC 학교 시험 B+. 급수(Series) 단원이 약해요.",
+};
+
 form.addEventListener("change", (e) => {
-  if (e.target.name === "curriculum") renderCourses(e.target.value);
+  if (e.target.name === "curriculum") {
+    renderCourses(e.target.value);
+    form.elements.needs.placeholder = NEEDS_EXAMPLES[e.target.value] || NEEDS_EXAMPLES.IB;
+  }
   const row = e.target.closest(".choice-row");
   if (row) row.classList.remove("invalid");
   if (e.target.getAttribute("aria-invalid")) e.target.removeAttribute("aria-invalid");

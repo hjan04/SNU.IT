@@ -33,11 +33,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # Publish only the site files; notes, scripts and docs stay out of Pages.
+      - name: Collect site files
+        run: |
+          mkdir _site
+          cp index.html styles.css script.js favicon.svg apple-touch-icon.png og.png _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

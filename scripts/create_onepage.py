@@ -46,31 +46,31 @@ text(118, 48, "TUTORING", 7, True)
 text(397, 45, "방학 집중 프로그램 · 준비 중", 8, color=MUTED)
 rule(77, INK)
 
-text(44, 99, "국제학교 학생을 위한 MATH & PHYSICS", 9, True)
+text(44, 99, "국제학교 학생을 위한 STEM 방학 집중 프로그램", 9, True)
 text(41, 124, "방학의 공부,", 43, True)
 text(41, 181, "다음 단계로.", 43, True, ACCENT)
 text(44, 255, "같은 길을 먼저 걸어본 서울대 선배와 함께.", 16, True)
-text(44, 287, "서울대학교 재학생 및 최근 졸업생 강사진과", 10, color=MUTED)
+text(44, 287, "국제학교를 졸업한 서울대학교 재학생 강사진과", 10, color=MUTED)
 text(44, 304, "개념을 이해하고, 문제에 적용하는 집중 수업을 준비합니다.", 10, color=MUTED)
-text(44, 339, "실시간 온라인    /    4–6명 소수정예 예정    /    IB · AP · IGCSE · A-Level", 9, True)
+text(44, 339, "실시간 온라인    /    5–8명 소수정예    /    IB · AP · IGCSE · A-Level", 9, True)
 rule(370, INK)
 
 text(44, 389, "어떤 과목을 배우나요?", 11, True)
-text(44, 415, "Math & Physics", 22, True)
+text(44, 415, "STEM", 22, True)
 text(273, 384, "IB", 9, True)
-text(306, 384, "Math AA HL / SL · Physics HL / SL", 8.5)
+text(306, 384, "Math AA · Physics · Chemistry · Biology", 8.5)
 text(273, 404, "AP", 9, True)
-text(306, 404, "Calculus AB / BC · Physics", 8.5)
+text(306, 404, "Calculus AB / BC · Physics 1 / C · Chemistry", 8.5)
 text(273, 424, "IGCSE / A-Level", 9, True)
-text(382, 424, "Math · Physics", 8.5)
-text(273, 443, "수요에 따라 개설 검토 · 시험기관·세부 과목 미정", 7.5, color=MUTED)
+text(382, 424, "Math · Physics · Chemistry · Biology", 8.5)
+text(273, 443, "과목별 Waitlist 5명 이상 모이면 반 개설", 7.5, color=MUTED)
 rule(463)
 
-text(44, 481, "이해에서 적용까지, 두 강사의 관점으로.", 12, True)
+text(44, 481, "개념부터 실전까지, 매주 같은 기준으로.", 12, True)
 for x, number, title, description in [
-    (44, "01", "개념 이해", "핵심 원리와 사고방식"),
-    (221, "02", "문제 적용", "기출·고난도 문제 연습"),
-    (398, "03", "피드백", "취약 영역과 학습 방향"),
+    (44, "01", "개념 이해", "Day 1 · 핵심 원리와 접근법"),
+    (221, "02", "문제 적용", "Day 2 · 기출·실전 문제"),
+    (398, "03", "공통 자료", "강사진 공통 노트·문제지"),
 ]:
     text(x, 511, number, 8, True, ACCENT)
     text(x, 528, title, 16, True)
@@ -83,7 +83,7 @@ text(63, 665, "관심 등록이 시작되면 확정된 일정과 모집 안내�
 text(63, 691, "관심 등록 준비 중", 11, True, PAPER)
 text(63, 716, "결제 없이 관심 등록 · 현재는 신청이나 개인정보를 받지 않습니다.", 8, color="#d3d9ce")
 
-text(44, 763, "서울대학교 재학생 및 최근 졸업생이 준비하는 독립 교육 프로그램입니다.", 7, color=MUTED)
+text(44, 763, "서울대학교 재학생이 준비하는 독립 교육 프로그램입니다.", 7, color=MUTED)
 text(44, 777, "서울대학교 공식 운영 프로그램이 아닙니다.", 7, color=MUTED)
 text(397, 794, "검토용 초안 · 신청 링크 연결 전", 7, color=MUTED)
 c.showPage()

@@ -6,7 +6,7 @@ const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbxB6X2W9btPlu
 
 // Fill these in when ready; empty values keep the feature off.
 const GA_MEASUREMENT_ID = ""; // GA4, e.g. "G-XXXXXXXXXX"
-const CONTACT_URL = ""; // KakaoTalk open chat or https://wa.me/<number>
+const CONTACT_URL = "https://open.kakao.com/o/gDUvEIVi"; // KakaoTalk open chat or https://wa.me/<number>
 
 window.dataLayer = window.dataLayer || [];
 function gtag() { window.dataLayer.push(arguments); }

@@ -156,7 +156,7 @@
 ## Waitlist 폼 — 목표: 최대한 많이 받기
 - '현재 가장 도움이 필요한 부분'(선택): 안내 문구 "최근 성적이나 Predicted Grade를 함께 적어주시면…" + 커리큘럼별 예시 placeholder (IB · IGCSE · A-Level · AP)
 - 동의 아래 작은 글씨: "만 14세 미만 학생은 보호자가 작성해주세요."
-- 문의하기: 화면 오른쪽 아래 작은 버튼 (CONTACT_URL 설정 시 표시)
+- 카카오톡 문의: 화면 오른쪽 아래 버튼 + 등록 완료 화면 링크 → 오픈채팅 https://open.kakao.com/o/gDUvEIVi
 - 필수: 학생 이름 · 연락처(WhatsApp 또는 Email) · Curriculum · 과목 (+ 개인정보 동의)
 - 나머지(학부모 이름, 학교, 국가, 학년, 관심 프로그램, 유입 경로 등)는 전부 선택
 - 과목 선택지: Mathematics · Physics · Chemistry · Biology · Other

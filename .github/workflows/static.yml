@@ -37,7 +37,7 @@ jobs:
       - name: Collect site files
         run: |
           mkdir _site
-          cp index.html styles.css script.js favicon.svg apple-touch-icon.png og.png _site/
+          cp index.html styles.css script.js favicon.png logo-mark.png apple-touch-icon.png og.png _site/
           if [ -d photos ]; then cp -r photos _site/; fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

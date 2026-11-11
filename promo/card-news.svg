@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="3240" viewBox="0 0 1080 3240">
+  <style>
+    text{font-family:'Pretendard Variable',Pretendard,'Malgun Gothic',sans-serif;fill:#14213a}
+    .serif{font-family:'Noto Serif KR','Malgun Gothic',serif;font-weight:700}
+    .white{fill:#fff}.muted{fill:#5c6676}.blue{fill:#8fbcf0}.small{font-size:30px}.body{font-size:42px}.title{font-size:76px}.brand{font-size:34px;font-weight:800;letter-spacing:2px}.num{font-size:26px;letter-spacing:4px;font-weight:700}
+  </style>
+  <rect width="1080" height="3240" fill="#fbfaf7"/>
+  <g transform="translate(0 0)">
+    <rect width="1080" height="1080" fill="#0f2b52"/>
+    <path d="M0 780 L1080 480 M0 880 L1080 580 M0 980 L1080 680" stroke="#36557f" stroke-width="2"/>
+    <text x="80" y="108" class="brand white">SNU. INTERNATIONAL TUTORING</text>
+    <text x="80" y="215" class="num blue">01 / 03 · WINTER INTENSIVE</text>
+    <text x="80" y="393" class="title serif white">IB · IGCSE</text>
+    <text x="80" y="490" class="title serif white">A-Level · AP</text>
+    <text x="80" y="623" class="title serif white">먼저 해본</text>
+    <text x="80" y="720" class="title serif white">서울대 선배에게.</text>
+    <text x="80" y="927" class="body white">국제학교 출신 서울대생의</text>
+    <text x="80" y="986" class="body white">소수정예 온라인 수업</text>
+  </g>
+  <g transform="translate(0 1080)">
+    <text x="80" y="108" class="brand">SNU. INTERNATIONAL TUTORING</text>
+    <text x="80" y="215" class="num" fill="#2f63ad">02 / 03 · SUBJECTS</text>
+    <text x="80" y="345" class="title serif">내 과목도</text>
+    <text x="80" y="440" class="title serif">가능할까요?</text>
+    <rect x="80" y="520" width="920" height="360" rx="20" fill="#edf3fa"/>
+    <text x="125" y="605" class="body">IB  ·  IGCSE</text>
+    <text x="125" y="680" class="body">A-Level  ·  AP</text>
+    <path d="M125 727 H955" stroke="#b7c9dd" stroke-width="2"/>
+    <text x="125" y="797" class="body">수학  ·  물리  ·  화학  ·  생물</text>
+    <text x="80" y="958" class="small muted">과목별 수요를 확인해 반 편성을 안내합니다.</text>
+  </g>
+  <g transform="translate(0 2160)">
+    <rect width="1080" height="1080" fill="#0f2b52"/>
+    <text x="80" y="108" class="brand white">SNU. INTERNATIONAL TUTORING</text>
+    <text x="80" y="215" class="num blue">03 / 03 · JOIN THE WAITLIST</text>
+    <text x="80" y="367" class="title serif white">먼저 관심만</text>
+    <text x="80" y="462" class="title serif white">남겨주세요.</text>
+    <text x="80" y="600" class="body white">관심 등록 무료 · 결제 없음</text>
+    <text x="80" y="671" class="body white">무료 온라인 설명회 일정 안내</text>
+    <rect x="80" y="760" width="920" height="100" rx="50" fill="#8fbcf0"/>
+    <text x="540" y="825" font-size="40" font-weight="700" text-anchor="middle">프로필 링크에서 Waitlist 등록 →</text>
+  </g>
+</svg>
